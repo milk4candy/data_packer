@@ -3,6 +3,8 @@
 
 class data_packer{
 
+    private $lib_dir = null;
+
     private $args = null;
 
     private $args_str_for_zipper = null;
@@ -14,6 +16,7 @@ class data_packer{
     private $mail = null;
 
     public function __construct($cmd_args){
+        $this->lib_dir = __DIR__."/lib";
         array_shift($cmd_args);
         $this->args = $cmd_args;
         $this->archive_filename = $this->get_archive_filename();
@@ -51,8 +54,8 @@ class data_packer{
     }
 
     public function init_mail(){
-        require(__DIR__."/lib/PHPMailer/class.phpmailer.php");
-        require(__DIR__."/lib/PHPMailer/class.smtp.php");
+        require("$this->lib_dir/PHPMailer/class.phpmailer.php");
+        require("$this->lib_dir/PHPMailer/class.smtp.php");
         $this->mail = new PHPMailer();
         $this->mail->IsSMTP();
         $this->mail->IsHTML(true);
@@ -64,7 +67,7 @@ class data_packer{
     }
 
     public function pack_data(){
-        exec("./zipper.php $this->zipper_args_str", $output, $exec_code);
+        exec("$this->lib_dir/zipper/zipper.php $this->zipper_args_str", $output, $exec_code);
         return $exec_code;
     }
 
