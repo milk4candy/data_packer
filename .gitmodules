@@ -1,0 +1,6 @@
+[submodule "lib/PHPMailer"]
+	path = lib/PHPMailer
+	url = https://github.com/Synchro/PHPMailer.git
+[submodule "lib/zipper"]
+	path = lib/zipper
+	url = https://github.com/milk4candy/zipper.git
